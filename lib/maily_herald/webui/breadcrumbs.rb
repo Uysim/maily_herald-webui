@@ -11,7 +11,7 @@ module MailyHerald
           protected
 
           def add_breadcrumb name, url = nil, options = {}
-            before_filter options do |controller|
+            before_action options do |controller|
               controller.send(:add_breadcrumb, name, url, options)
             end
           end
@@ -34,7 +34,7 @@ module MailyHerald
             @breadcrumbs << {:name => name, :url => url, :intitle => options[:intitle], :intitle_only => options[:intitle_only]}
           end
 
-          def disable_breadcrumbs 
+          def disable_breadcrumbs
             @breadcrumbs_disabled = true
           end
         end
