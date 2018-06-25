@@ -13,7 +13,7 @@ module MailyHerald
           protected
 
           def set_menu_item name
-            before_filter do |controller|
+            before_action do |controller|
               controller.send(:set_menu_item, name)
             end
           end
@@ -26,7 +26,7 @@ module MailyHerald
             menu_manager.current_menu_item = name
           end
 
-          def menu_manager 
+          def menu_manager
             @menu_manager ||= MenuManager.new
           end
 

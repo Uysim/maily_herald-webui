@@ -14,7 +14,7 @@
           .col-sm-6= render_breadcrumbs
           .col-sm-3
             .dropdown.pull-right.dropdown-settings
-              %a{:href => '#', :data => { toggle: 'dropdown'}} 
+              %a{:href => '#', :data => { toggle: 'dropdown'}}
                 = icon(:cog, nil, title: t(".settings"))
               %ul.dropdown-menu{'role' => 'menu'}
                 %li= setting_switcher :expert_mode
@@ -26,8 +26,8 @@
 
         .content-container
           = yield
-      
-      .footer 
+
+      .footer
         .pull-right
           = t(".created_by")
           = link_to "Sology", "http://www.sology.eu"
@@ -40,7 +40,7 @@
             = "v#{::MailyHerald::Webui::VERSION}"
           %span
             %strong Redis:
-            = MailyHerald.redis.client.id
+            = MailyHerald.redis.id
           - if MailyHerald.redis.respond_to?(:namespace)
             %span
               %strong Namespace:

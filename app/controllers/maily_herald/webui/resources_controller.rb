@@ -5,7 +5,7 @@ module MailyHerald
 
     helper_method :resource_spec
 
-    before_filter :find_item, :only => [:show, :edit, :update, :destroy]
+    before_action :find_item, :only => [:show, :edit, :update, :destroy]
 
     class Spec
       DEFAULT_CONTAINER = "details"
@@ -25,7 +25,7 @@ module MailyHerald
       end
     end
 
-    def index 
+    def index
       scope = resource_spec.scope
       scope = resource_spec.filter(scope, params[:filter]) if params[:filter]
 
@@ -112,7 +112,7 @@ module MailyHerald
     end
 
     # Renders update template from different action
-    def render_update 
+    def render_update
       render action: "update"
     end
 
@@ -140,7 +140,7 @@ module MailyHerald
     def item_params
       if Rails::VERSION::MAJOR == 3
         params[:item]
-      else 
+      else
         params.require(:item).permit(*resource_spec.params)
       end
     end
