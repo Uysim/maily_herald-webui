@@ -9,6 +9,8 @@ end
 
 module MailyHerald
   module Webui
+
+    autoload :FormBuilder,          'maily_herald/webui/form_builder'
     autoload :Breadcrumbs,          'maily_herald/webui/breadcrumbs'
     autoload :MenuManager,          'maily_herald/webui/menu_manager'
   end
