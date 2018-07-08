@@ -3,7 +3,7 @@ module MailyHerald
     def switch_setting
       settings.toggle params[:setting]
 
-      redirect_to :back
+      redirect_back(fallback_location: root_path)
     end
 
     private
