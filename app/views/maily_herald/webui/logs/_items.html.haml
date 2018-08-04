@@ -1,7 +1,7 @@
 - unless smart_listing.empty?
   %table.table.table-striped
     %thead
-      %tr 
+      %tr
         - unless @entity
           %th= tw("attributes.entity")
           %th= tw("attributes.email")
@@ -11,7 +11,7 @@
         %th= tw("attributes.status")
         %th
     %tbody
-      - smart_listing.collection.each do |log|
+      - smart_listing.collection.includes(:entity, :mailing).each do |log|
         %tr
           - unless @entity
             %td= log.entity
@@ -28,7 +28,7 @@
           %td.actions
             .action-group= smart_listing_item_actions log_actions(log)
 
-  = smart_listing.paginate 
-  = smart_listing.pagination_per_page_links 
+  = smart_listing.paginate
+  = smart_listing.pagination_per_page_links
 - else
   = t(".no_logs")
