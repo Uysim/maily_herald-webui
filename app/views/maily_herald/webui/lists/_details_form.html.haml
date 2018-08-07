@@ -5,8 +5,8 @@
   - content_for_expert do
     = f.text_field :name
   = f.text_field :title
-  - if @item.new_record?
-    = f.maily_context_select
+
+  = f.maily_context_select
 
   - if @item.new_record?
     = f.buttons :create
