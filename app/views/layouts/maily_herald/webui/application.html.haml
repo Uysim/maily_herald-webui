@@ -11,10 +11,17 @@
         .row
           .col-sm-3.text-center
             %h1= link_to image_tag("maily_herald/webui/logo.svg", :class => "img-responsive logo"), root_path
-          .col-sm-6= render_breadcrumbs
+          .col-sm-6
+            .row
+              .col-sm-6
+                = render_breadcrumbs
+              .col-sm-6
+                - flash.each do |key, value|
+                  = content_tag :div, value, class: "flash #{key}"
+
           .col-sm-3
             .dropdown.pull-right.dropdown-settings
-              %a{:href => '#', :data => { toggle: 'dropdown'}} 
+              %a{:href => '#', :data => { toggle: 'dropdown'}}
                 = icon(:cog, nil, title: t(".settings"))
               %ul.dropdown-menu{'role' => 'menu'}
                 %li= setting_switcher :expert_mode
@@ -26,7 +33,7 @@
 
         .content-container
           = yield
-      
+
     .footer
       .container
         .pull-right

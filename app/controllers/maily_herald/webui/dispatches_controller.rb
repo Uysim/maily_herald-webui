@@ -6,11 +6,9 @@ module MailyHerald
       end
     end
 
-    def archived 
-      self.class.superclass.instance_method(:index).bind(self).call do |scope|
-        scope.archived
-      end
-
+    def archived
+      scope = resource_spec.scope.archived
+       @items = smart_listing_create(:items, scope, :partial => resource_spec.items_partial || "items")
       render "index"
     end
 
@@ -20,10 +18,20 @@ module MailyHerald
     end
 
     def destroy
-      @item.archive!
+      if @item.archived? && params[:really_destroy] == 'true'
+        if @item.destroy
+          flash[:notice] = "destroyed"
+          redirect_to :action => :index
+        else
+          flash[:notice] = @item.errors.full_messages.to_sentence
+          redirect_back(fallback_location: root_path)
+        end
+      else
+        @item.archive!
 
-      render_containers ["details", "subscribers"]
-      render_update
+        render_containers ["details", "subscribers"]
+        render_update
+      end
     end
 
     def toggle

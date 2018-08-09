@@ -1,7 +1,7 @@
 en:
   activerecord:
     attributes:
-      ad_hoc_mailing: 
+      ad_hoc_mailing:
         name: Name
         context_name: Context
         sequence: Sequence
@@ -10,7 +10,7 @@ en:
         from: Sender
         relative_delay: Delay
         template: Template
-      one_time_mailing: 
+      one_time_mailing:
         name: Name
         context_name: Context
         sequence: Sequence
@@ -19,7 +19,7 @@ en:
         from: Sender
         relative_delay: Delay
         template: Template
-      periodical_mailing: 
+      periodical_mailing:
         name: Name
         context_name: Context
         sequence: Sequence
@@ -28,7 +28,7 @@ en:
         from: Sender
         relative_delay: Delay
         template: Template
-      sequence_mailing: 
+      sequence_mailing:
         name: Name
         context_name: Context
         sequence: Sequence
@@ -38,7 +38,7 @@ en:
         relative_delay: Delay
         template: Template
         absolute_delay: Absolute delay
-      sequence: 
+      sequence:
         name: Name
         context_name: Context
         mode: Mode
@@ -206,6 +206,7 @@ en:
           missing: No conditions
         header:
           confirm_archive: Are you sure you want to archive this Mailing?
+          confirm_remove: Are you sure you want to delete this Mailing?
           enable_confirm: Are you sure you want to enable this Mailing?
           disable_confirm: Are you sure you want to disable this Mailing?
         infos:

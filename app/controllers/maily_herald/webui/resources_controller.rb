@@ -25,7 +25,7 @@ module MailyHerald
       end
     end
 
-    def index 
+    def index
       scope = resource_spec.scope
       scope = resource_spec.filter(scope, params[:filter]) if params[:filter]
 
@@ -76,11 +76,13 @@ module MailyHerald
     end
 
     def destroy
-      @item.destroy
-
-      flash[:notice] = "destroyed"
-
-      redirect_to :action => :index
+      if @item.destroy
+        flash[:notice] = "destroyed"
+        redirect_to :action => :index
+      else
+        flash[:notice] = @item.errors.full_messages.to_sentence
+        redirect_back(fallback_location: root_path)
+      end
     end
 
     protected
@@ -112,7 +114,7 @@ module MailyHerald
     end
 
     # Renders update template from different action
-    def render_update 
+    def render_update
       render action: "update"
     end
 
@@ -140,7 +142,7 @@ module MailyHerald
     def item_params
       if Rails::VERSION::MAJOR == 3
         params[:item]
-      else 
+      else
         params.require(:item).permit(*resource_spec.params)
       end
     end

@@ -18,7 +18,13 @@
     = link_to({action: "deliver", id: @item}, :method => :post, :remote => true, :data => {:confirm => tw("ad_hoc_mailings.header.confirm_send_to_all")}, :class => "link link-sm") do
       = icon(:send)
       = tw("commons.send_to_all")
+
   - unless @item.locked? || @item.archived?
     = link_to({action: "destroy", id: @item}, :method => :delete, :remote => true, :data => {:confirm => t(".confirm_archive")}, :class => "link link-sm") do
       = icon(:archive)
       = tw("commons.archive")
+
+  - if @item.archived?
+    = link_to({action: "destroy", id: @item, really_destroy: true}, :method => :delete, :data => {:confirm => t(".confirm_remove")}, :class => "link link-sm") do
+      = icon(:trash)
+      = tw("commons.remove")
